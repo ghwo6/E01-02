@@ -13,8 +13,9 @@
 
 Switched to a new branch 'develop' 확인 가능
 
-> git branch 입력시
+> git branch 입력시 현재 어디에 있는지 확인 가능함
 * develop
   main
-
+> 빈 폴더를 유지하기 위해서 .gitkeep 생성함
+> 
 ~~~
