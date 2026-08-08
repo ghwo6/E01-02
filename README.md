@@ -17,5 +17,5 @@ Switched to a new branch 'develop' 확인 가능
 * develop
   main
 > 빈 폴더를 유지하기 위해서 .gitkeep 생성함
-> 
+> 퀴즈가 추가 됬을때, 하이스코어가 갱신됬을떄 data는 어떻게 바뀔까? 바뀌지 않는다. 그 이유는?
 ~~~

@@ -2,7 +2,7 @@ from quiz import Quiz
 import random
 import os
 import json
-
+count = 0
 folder = os.path.dirname(__file__)
 file = os.path.join(os.path.dirname(__file__),"state.json")
 
@@ -28,10 +28,10 @@ def save_json_data(data:dict):
             json.dump(data,f,ensure_ascii=False,indent=4)
     except PermissionError as e:
         print("파일 저장 권한이 없습니다. ",e)
-    except TypeError as e:
-        print(f"JSON 포맷이 손상되었습니다. ", e)
-    except Exception as e:
-        print("오류가 발생했습니다. ", e)
+    # except TypeError as e:
+    #     print(f"JSON 포맷이 손상되었습니다. ", e)
+    # except Exception as e:
+    #     print("오류가 발생했습니다. ", e)
 
 class QuizGame:
     def __init__(self):
@@ -49,7 +49,7 @@ class QuizGame:
         # 종료(메뉴5번)를 선택했을때 True를 반환함
         self.is_exit_key:bool = False
 
-        if self.quiz_list == None:
+        if self.data == None:
             sampleQuiz1 = Quiz("저의 이름은?",["김호재","휴즈","효성","삼성"],1)
             sampleQuiz2 = Quiz("코디세이의 인근역의 이름은?",["삼성역","개포동역","대모산입구역","수서역"],2)
             sampleQuiz3 = Quiz("코디세이 AI 올일원 2기 오리엔테이션을 진행한 날은?",["260727","260627","260617","260330"],1)
@@ -57,12 +57,18 @@ class QuizGame:
             sampleQuiz5 = Quiz("코디세이가 제공하는 AI 이름은?",["제미나이","X AI","클로드","네이토"],4)
 
             self.quiz_list =[sampleQuiz1,sampleQuiz2,sampleQuiz3,sampleQuiz4,sampleQuiz5]
-        self.update_data()
-        if self.data != None:
-            print(self.data)
-        
+
+            self.update_data()
+
+            save_json_data(data=self.data)
+
+
+        # Quiz클래스를 Json파일에 넣을때 에러가 나오므로 기본 클래스인 딕셔너리로 변환한다.
     def update_data(self):
         quiz_parsing = []
+        if self.quiz_list == [] or self.quiz_list == None:
+            print("self.quiz_list가 없습니다.")
+            return
         for quiz in self.quiz_list:
             quiz_parsing.append(quiz.to_dict())
             
@@ -70,10 +76,10 @@ class QuizGame:
 
     def unpack_data(self):
         if self.data == None:
+            print("data가 비었습니다.")
             return
         self.quiz_list = []
-        quiz_list = self.data["quiz_list"]
-        for di in quiz_list:
+        for di in self.data["quiz_list"]:
             unpacking_quiz = Quiz(di["question"],di["option"],di["answer_number"])
             self.quiz_list.append(unpacking_quiz)
 
@@ -99,9 +105,6 @@ class QuizGame:
 
             random_quiz = unsolved_quiz_list.pop(random_quiz_index)
             
-            # random_quiz = unsolved_quiz_list[random_quiz_index]
-            # unsolved_quiz_list.pop(random_quiz_index)
-            
             random_quiz.printQuestion()
             select = self.answer_select(random_quiz)
             if select == random_quiz.answer_number:
@@ -111,15 +114,16 @@ class QuizGame:
                 print("\n\n")
             else:
                 print("틀렸습니다.")
-                print(f"정답은 {random_quiz.answer_number}입니다.")
-                print("\n\n")
+                print(f"정답은 {random_quiz.answer_number}입니다.","\n\n")
 
         print(f"최종 점수는 {self.score}입니다.")
         if self.score > int(self.highest_score):
             self.highest_score = self.score
             print("새로운 기록을 경신하셨습니다!!")
-            self.update_data()
-            
+            self.data["highest_score"] = self.score
+            save_json_data(data=self.data)
+
+
     # 메뉴2 문제를 등록합니다.
     def quiz_regist(self):
         new_quiz = None
@@ -135,11 +139,12 @@ class QuizGame:
         option4 = s_input("선택지 4번 : >")
 
         answer = int_input("정답을 입력해주세요 : >",1,4)
-
         new_quiz = Quiz(question=question,option=[option1,option2,option3,option4],answer_number=answer)
 
         self.quiz_list.append(new_quiz)
+        self.data["quiz_list"] = self.quiz_list
         self.update_data()
+        save_json_data(data=self.data)
 
 
     # 메뉴3 문제의 리스트를 봅니다.
@@ -153,7 +158,9 @@ class QuizGame:
 
     # 메뉴4 가장 높은 점수를 확인합니다.
     def highest_score_show(self):
-        ...
+        print("-----------------------------")
+        print(f"{self.highest_score}점 입니다.")
+        print("-----------------------------")
 
     # 원하는 정답을 선택하는 기능
     def answer_select(self,quiz:Quiz):

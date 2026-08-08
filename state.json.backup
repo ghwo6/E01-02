@@ -49,16 +49,6 @@
                 "네이토"
             ],
             "answer_number": 4
-        },
-        {
-            "question": "1?",
-            "option": [
-                "1",
-                "1",
-                "1",
-                "1"
-            ],
-            "answer_number": 1
         }
     ],
     "highest_score": 0
