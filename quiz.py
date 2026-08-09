@@ -18,7 +18,7 @@ class Quiz:
     def question_getter(self)->str:
         return self.question
     
-    def to_dict(self):
+    def to_dict(self)->dict:
         return {
             "question": self.question,
             "option": self.option,
