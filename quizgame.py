@@ -32,7 +32,7 @@ class QuizGame:
         for quiz in self.quiz_list:
             quiz_parsing.append(quiz.to_dict())
             
-        self.data = {"quiz_list":quiz_parsing,"highest_score":self.highest_score}
+        self.data = {"quizzes":quiz_parsing,"best_score":self.highest_score}
 
     def load_backup_quiz(self):
         if self.quiz_list == []:
@@ -53,7 +53,7 @@ class QuizGame:
         quiz_parsing = []
         for quiz in self.quiz_list:
             quiz_parsing.append(quiz.to_dict())
-        self.data["quiz_list"] = quiz_parsing
+        self.data["quizzes"] = quiz_parsing
 
 
     def unpack_data(self):
@@ -61,7 +61,7 @@ class QuizGame:
             print("data가 비었습니다.")
             return
         self.quiz_list = []
-        for di in self.data["quiz_list"]:
+        for di in self.data["quizzes"]:
             unpacking_quiz = Quiz(di["question"],di["option"],di["answer_number"])
             self.quiz_list.append(unpacking_quiz)
 
@@ -110,7 +110,7 @@ class QuizGame:
         if self.score > int(self.highest_score):
             self.highest_score = self.score
             print("새로운 기록을 경신하셨습니다!!")
-            self.data["highest_score"] = self.score
+            self.data["best_score"] = self.score
             data_handle.save_json_data(data=self.data)
 
 
@@ -132,7 +132,7 @@ class QuizGame:
         new_quiz = Quiz(question=question,option=[option1,option2,option3,option4],answer_number=answer)
 
         self.quiz_list.append(new_quiz)
-        self.data["quiz_list"] = self.quiz_list
+        self.data["quizzes"] = self.quiz_list
         self.updating_quiz()
         data_handle.save_json_data(data=self.data)
 

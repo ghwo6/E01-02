@@ -1,5 +1,5 @@
 {
-    "quiz_list": [
+    "quizzes": [
         {
             "question": "저의 이름은?",
             "option": [
@@ -61,5 +61,5 @@
             "answer_number": 2
         }
     ],
-    "highest_score": 40
+    "best_score": 120
 }
