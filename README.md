@@ -1,76 +1,77 @@
+# 📝 나만의 퀴즈 게임 (Console Quiz Game)
 
-~~~sh
+## 1. 프로젝트 개요
+터미널 환경에서 실행되는 파이썬 기반의 객체지향 퀴즈 게임입니다. 
+사용자가 직접 퀴즈를 풀고, 새로운 문제를 추가하며, 최고 점수를 기록할 수 있습니다.
+프로그램이 종료되어도 데이터가 유지되는 영속성을 구현했습니다.
 
-ghwo61351@c6r2s2 E01-02 % git add .
-ghwo61351@c6r2s2 E01-02 % git status
-On branch feature/quizGame-py/menu
-Your branch is ahead of 'origin/feature/quizGame-py/menu' by 1 commit.
-  (use "git push" to publish your local commits)
+## 2. 퀴즈 주제 선정 이유
+*   **주제:** 코디세이
+*   **선정 이유:** 쉬움
+## 3. 실행 방법
+프로그램을 실행하려면 아래 명령어를 터미널에 입력하세요.
+\`\`\`bash
+python main.py
+\`\`\`
+또는 vs code 오른쪽 위의 재생버튼을 클릭합니다.
+> **Note:** Python 3.10 이상 환경에서 실행을 권장합니다. 외부 라이브러리 설치는 필요하지 않습니다. (match 키워드가 3.10이상 에서만 작동합니다.)
 
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        modified:   README.md
-        modified:   main.py
-        modified:   quizgame.py
-        modified:   state.json
-        new file:   state.json.backup
+## 4. 기능 목록
+*   **1. 퀴즈 풀기:** 무작위 순서로 출제되는 퀴즈를 풉니다. (정답 시 20점 추가)
+*   **2. 퀴즈 등록:** 사용자가 직접 새로운 문제, 4개의 선택지, 정답 번호를 입력하여 추가합니다.
+*   **3. 퀴즈 목록:** 현재 등록되어 있는 모든 퀴즈를 확인합니다.
+*   **4. 점수 확인:** 역대 플레이 기록 중 가장 높았던 최고 점수를 확인합니다.
+*   **5. 종료:** 안전하게 데이터를 저장하고 프로그램을 종료합니다.
+*   **🛡️ 예외 처리 내장:** 잘못된 값(문자, 범위 이탈, 공백)이나 강제 종료(`Ctrl+C`, `Ctrl+D`) 시에도 프로그램이 뻗지 않고 대응합니다.
 
-ghwo61351@c6r2s2 E01-02 % git commit -m "문제 보기 추가"
-[feature/quizGame-py/menu ddfb3f0] 문제 보기 추가
- 5 files changed, 91 insertions(+), 28 deletions(-)
- create mode 100644 state.json.backup
-ghwo61351@c6r2s2 E01-02 % git branch
-  develop
-* feature/quizGame-py/menu
-ghwo61351@c6r2s2 E01-02 % git checkout develop
-Switched to branch 'develop'
-Your branch is up to date with 'origin/develop'.
-ghwo61351@c6r2s2 E01-02 % git merge feature/quizGame-py/menu
-Updating 2febdaf..ddfb3f0
-Fast-forward
- .gitignore        |   4 ++-
- README.md         |   5 +--
- main.py           |   9 +++++
- quiz.py           |  26 ++++++++++++++
- quizgame.py       | 297 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- state.json        |  65 +++++++++++++++++++++++++++++++++++
- state.json.backup |  55 +++++++++++++++++++++++++++++
- 7 files changed, 458 insertions(+), 3 deletions(-)
- create mode 100644 main.py
- create mode 100644 quiz.py
- create mode 100644 quizgame.py
- create mode 100644 state.json
- create mode 100644 state.json.backup
-ghwo61351@c6r2s2 E01-02 % git log --oneline
-ddfb3f0 (HEAD -> develop, feature/quizGame-py/menu) 문제 보기 추가
-83ae257 FEAT: state.json 파일 읽기 및 쓰기 기능 추가
-58944f7 (origin/feature/quizGame-py/menu) FEAT : gitignore수정 및 __pycache__ 폴더 제거
-f5ccbf9 FEAT:문제 추가 기능을 추가함 (try except KeyboardInterrupt와 EOF수정)
-ad7b097 FEAT:문제풀기 가능
-d9cc573 FEAT:5개 퀴즈 데이터 추가완료
-3a9a6b9 FEAT: Quiz클래스 추가(함수 실행을 위해 main.py추가)
-4d9f99f FEAT:종료 구현 완료
-d857ebf FEAT:메뉴출력완료
-2febdaf (origin/develop, origin/HEAD) FEAT: 브랜치별로 작성할 README폴더  준비
-6378852 feat. 초기화 완료 (md파일 추가 및 gitignore및 기능별 구현후 작성할 readme폴더 생성)
-ghwo61351@c6r2s2 E01-02 % 
-~~~
+## 5. 파일 구조
+\`\`\`text
+📦 퀴즈 게임 프로젝트
+ ┣ 📜 main.py          # 프로그램 진입점 (메뉴 루프 실행)
+ ┣ 📜 quizgame.py      # 게임 전반의 로직과 상태를 통제하는 메인 보드 역할
+ ┣ 📜 quiz.py          # 개별 문제의 상태(question, choices, answer) 정의
+ ┣ 📜 data_handle.py   # JSON 파일 읽기/쓰기 모듈
+ ┣ 📜 custom_input.py  # 사용자 입력 및 예외 검증 모듈
+ ┣ 📜 state.json       # 영속성 데이터 저장 파일
+ ┣ 📂 docs/
+ ┃ ┗ 📂 screenshots/   # 기능 실행 화면 캡처 이미지 모음
+ ┃   ┗ 📜 .gitkeep     # 빈 폴더를 Git에 추적시키기 위한 파일
+ ┗ 📜 README.md        # 프로젝트 설명서
+\`\`\`
 
+## 6. 데이터 파일 설명 (state.json)
+*   **경로:** 프로젝트 루트 디렉터리 (`/state.json`)
+*   **역할:** 퀴즈 데이터와 최고 점수가 영구적으로 유지되도록 하는 저장소입니다.
+*   **스키마:**
+\`\`\`json
+{
+    "quizzes": [
+        {
+            "question": "문제 내용 (str)",
+            "choices": ["선택지1", "선택지2", "선택지3", "선택지4"],
+            "answer": 정답 번호 (int, 1~4)
+        }
+    ],
+    "best_score": 최고 점수 (int)
+}
+\`\`\`
 
-~~~
-배운것 입력
-> git commit -m "~" main에 아무 커밋이 없으면 브랜치를 생성할 수 없음
-> 빈 폴더를 git add . 한다고 해서 추가 되지 않는다.
-> 이전 커밋에 수정사항을 추가하려고 한다면 (git add .후에) git commit --amend하면 된다고 함
-> git branch 이동 하는법
-> (레포에 1개라도 커밋 기록이 있는상태)
-> git switch -c <브랜치>   - 브랜치에 입력하길 원하는 이름 생성
+## 7. 스크린샷 (실행 화면)
+*   **메뉴 화면:** ![메뉴](docs/screenshots/menu.png)
+*   **퀴즈 풀기:** ![플레이](docs/screenshots/play.png)
+*   **퀴즈 추가:** ![퀴즈 추가](docs/screenshots/add_quiz.png)
+*   **점수 확인:** ![점수](docs/screenshots/score.png)
 
-Switched to a new branch 'develop' 확인 가능
+---
 
-> git branch 입력시 현재 어디에 있는지 확인 가능함
-* develop
-  main
-> 빈 폴더를 유지하기 위해서 .gitkeep 생성함
-> 퀴즈가 추가 됬을때, 하이스코어가 갱신됬을떄 data는 어떻게 바뀔까? 바뀌지 않는다. 그 이유는?
-~~~
+## 8. 💡 개발 과정 및 배운 점 (Troubleshooting)
+프로젝트를 진행하며 직면한 문제들과 이를 해결한 과정입니다.
+
+* **Git Branch 생성 조건 파악:** 
+  초기화 직후 메인 브랜치에 아무런 커밋 기록이 없으면 새로운 브랜치를 파생시킬 수 없다는 것을 확인했습니다. 최소 1회의 초기 커밋이 선행되어야 함을 배웠습니다.
+* **빈 폴더 추적 관리:** 
+  Git은 파일의 변경 사항만 추적하므로 빈 폴더(`docs/screenshots` 등)는 `git add .`로 추가되지 않습니다. 이를 해결하기 위해 폴더 내부에 `.gitkeep` 더미 파일을 생성하여 구조를 유지했습니다.
+* **커밋 수정 및 브랜치 이동:** 
+  이전 커밋에 변경 사항을 덮어씌울 때는 `git commit --amend`를 활용했고, `git switch -c <브랜치명>` 명령어로 브랜치 생성과 이동을 동시에 수행하며 작업 속도를 높였습니다. 현재 위치는 `git branch`로 수시로 확인했습니다.
+* **데이터 동기화 문제 해결:** 
+  퀴즈를 추가하거나 점수가 갱신될 때 메모리상의 `self.quiz_list`는 변경되지만, JSON으로 저장할 `self.data` 딕셔너리가 자동으로 업데이트되지는 않았습니다. 이는 객체의 상태 변화가 딕셔너리에 실시간으로 연동되지 않기 때문이며, 저장 직전에 메모리의 데이터를 딕셔너리로 다시 포장해주는(`self.updating_quiz()`) 동작이 필수적임을 깨달았습니다.

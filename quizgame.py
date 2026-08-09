@@ -62,7 +62,7 @@ class QuizGame:
             return
         self.quiz_list = []
         for di in self.data["quizzes"]:
-            unpacking_quiz = Quiz(di["question"],di["option"],di["answer_number"])
+            unpacking_quiz = Quiz(di["question"],di["choices"],di["answer"])
             self.quiz_list.append(unpacking_quiz)
 
     def printing_data(self):
@@ -97,14 +97,14 @@ class QuizGame:
             select = int_input("정답(숫자)을 입력해주세요.",1,4,random_quiz.printQuestion)
 
             # select = self.answer_select(random_quiz)
-            if select == random_quiz.answer_number:
+            if select == random_quiz.answer:
                 print("정답입니다.~~~~")
                 self.score += 20
                 print(f"현재 점수는 {self.score}입니다.")
                 print("\n")
             else:
                 print("틀렸습니다.")
-                print(f"정답은 {random_quiz.answer_number}입니다.","\n")
+                print(f"정답은 {random_quiz.answer}입니다.","\n")
 
         print(f"최종 점수는 {self.score}입니다.")
         if self.score > int(self.highest_score):
@@ -123,13 +123,13 @@ class QuizGame:
         elif question[-1] != "?":
             question = question + "?"
 
-        option1 = s_input("선택지 1번 : >")
-        option2 = s_input("선택지 2번 : >")
-        option3 = s_input("선택지 3번 : >")
-        option4 = s_input("선택지 4번 : >")
+        choices1 = s_input("선택지 1번 : >")
+        choices2 = s_input("선택지 2번 : >")
+        choices3 = s_input("선택지 3번 : >")
+        choices4 = s_input("선택지 4번 : >")
 
         answer = int_input("정답을 입력해주세요 : >",1,4)
-        new_quiz = Quiz(question=question,option=[option1,option2,option3,option4],answer_number=answer)
+        new_quiz = Quiz(question=question,choices=[choices1,choices2,choices3,choices4],answer=answer)
 
         self.quiz_list.append(new_quiz)
         self.data["quizzes"] = self.quiz_list
