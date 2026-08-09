@@ -2,53 +2,53 @@
     "quiz_list": [
         {
             "question": "저의 이름은?",
-            "option": [
+            "choices": [
                 "김호재",
                 "휴즈",
                 "효성",
                 "삼성"
             ],
-            "answer_number": 1
+            "answer": 1
         },
         {
             "question": "코디세이의 인근역의 이름은?",
-            "option": [
+            "choices": [
                 "삼성역",
                 "개포동역",
                 "대모산입구역",
                 "수서역"
             ],
-            "answer_number": 2
+            "answer": 2
         },
         {
             "question": "코디세이 AI 올일원 2기 오리엔테이션을 진행한 날은?",
-            "option": [
+            "choices": [
                 "260727",
                 "260627",
                 "260617",
                 "260330"
             ],
-            "answer_number": 1
+            "answer": 1
         },
         {
             "question": "코디세이 서울 교육장의 캐빈5가 위치한 층은?",
-            "option": [
+            "choices": [
                 "2층",
                 "3층",
                 "4층",
                 "5층"
             ],
-            "answer_number": 4
+            "answer": 4
         },
         {
             "question": "코디세이가 제공하는 AI 이름은?",
-            "option": [
+            "choices": [
                 "제미나이",
                 "X AI",
                 "클로드",
                 "네이토"
             ],
-            "answer_number": 4
+            "answer": 4
         }
     ],
     "highest_score": 0
