@@ -25,25 +25,25 @@ python main.py
 *   **🛡️ 예외 처리 내장:** 잘못된 값(문자, 범위 이탈, 공백)이나 강제 종료(`Ctrl+C`, `Ctrl+D`) 시에도 프로그램이 뻗지 않고 대응합니다.
 
 ## 5. 파일 구조
-\`\`\`text
-📦 퀴즈 게임 프로젝트
- ┣ 📜 main.py          # 프로그램 진입점 (메뉴 루프 실행)
- ┣ 📜 quizgame.py      # 게임 전반의 로직과 상태를 통제하는 메인 보드 역할
- ┣ 📜 quiz.py          # 개별 문제의 상태(question, choices, answer) 정의
- ┣ 📜 data_handle.py   # JSON 파일 읽기/쓰기 모듈
- ┣ 📜 custom_input.py  # 사용자 입력 및 예외 검증 모듈
- ┣ 📜 state.json       # 영속성 데이터 저장 파일
- ┣ 📂 docs/
- ┃ ┗ 📂 screenshots/   # 기능 실행 화면 캡처 이미지 모음
- ┃   ┗ 📜 .gitkeep     # 빈 폴더를 Git에 추적시키기 위한 파일
- ┗ 📜 README.md        # 프로젝트 설명서
-\`\`\`
+
+- 📦 퀴즈 게임 프로젝트
+  - 📜 `main.py` : 프로그램 진입점 (메뉴 루프 실행)
+  - 📜 `quizgame.py` : 게임 전반의 로직과 상태를 통제하는 메인 보드 역할
+  - 📜 `quiz.py` : 개별 문제의 상태(question, choices, answer) 정의
+  - 📜 `data_handle.py` : JSON 파일 읽기/쓰기 모듈
+  - 📜 `custom_input.py` : 사용자 입력 및 예외 검증 모듈
+  - 📜 `state.json` : 영속성 데이터 저장 파일
+  - 📂 `docs/`
+    - 📂 `screenshots/` : 기능 실행 화면 캡처 이미지 모음
+      - 📜 `.gitkeep` : 빈 폴더를 Git에 추적시키기 위한 파일
+  - 📜 `README.md` : 프로젝트 설명서
 
 ## 6. 데이터 파일 설명 (state.json)
 *   **경로:** 프로젝트 루트 디렉터리 (`/state.json`)
 *   **역할:** 퀴즈 데이터와 최고 점수가 영구적으로 유지되도록 하는 저장소입니다.
 *   **스키마:**
-\`\`\`json
+
+
 {
     "quizzes": [
         {
@@ -54,13 +54,12 @@ python main.py
     ],
     "best_score": 최고 점수 (int)
 }
-\`\`\`
 
 ## 7. 스크린샷 (실행 화면)
-*   **메뉴 화면:** ![메뉴](docs/screenshots/menu.png)
-*   **퀴즈 풀기:** ![플레이](docs/screenshots/play.png)
-*   **퀴즈 추가:** ![퀴즈 추가](docs/screenshots/add_quiz.png)
-*   **점수 확인:** ![점수](docs/screenshots/score.png)
+*   **메뉴 화면:** ![메뉴](./docs/screenshots/menu.png)
+*   **퀴즈 풀기:** ![플레이](./docs/screenshots/play.png)
+*   **퀴즈 추가:** ![퀴즈 추가](./docs/screenshots/add_quiz.png)
+*   **점수 확인:** ![점수](./docs/screenshots/score.png)
 
 ---
 
