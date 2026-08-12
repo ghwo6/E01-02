@@ -64,6 +64,7 @@ class QuizGame:
         for di in self.data["quizzes"]:
             unpacking_quiz = Quiz(di["question"],di["choices"],di["answer"])
             self.quiz_list.append(unpacking_quiz)
+        self.highest_score = self.data["best_score"]
 
     def printing_data(self):
         print(self.data)
