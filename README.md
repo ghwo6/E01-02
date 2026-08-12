@@ -77,9 +77,23 @@ python main.py
 *   **퀴즈 추가:** ![퀴즈 추가](./docs/screenshots/add_quiz.png)
 *   **점수 확인:** ![점수](./docs/screenshots/score.png)
 
+
+## 8. Git 실습 증빙 (Clone & Pull)
+과제 요구사항에 따른 저장소 복제 및 동기화 실습을 완료했습니다.
+
+*   **Clone 및 Push:** 
+    *   별도 로컬 디렉터리(`E01-02-cloned`)에 `git clone`으로 저장소를 복제했습니다.
+    *   `main` 브랜치로 이동 후, 기존 테스트 파일을 삭제하고 `pull_test1.txt`를 새롭게 생성하여 원격 저장소에 `push`를 완료했습니다.
+*   **Pull:** 
+    *   기존 작업 디렉터리(`E01-02`)로 복귀하여 `git pull origin main`을 실행했습니다.
+    *   원격 저장소의 변경 사항(Fast-forward 병합)이 기존 로컬 환경에 정상적으로 동기화된 것을 확인했습니다.
+
+📄 **상세 내역 확인**
+*   [터미널 실행 로그 원본 보기 (`docs/clone_pull.md`)](./docs/clone_pull.md)
+
 ---
 
-## 8. 💡 개발 과정 및 배운 점 (Troubleshooting)
+## 9. 💡 개발 과정 및 배운 점 (Troubleshooting)
 프로젝트를 진행하며 직면한 문제들과 이를 해결한 과정입니다.
 
 * **Git Branch 생성 조건 파악:** 
