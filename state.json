@@ -49,27 +49,7 @@
                 "네이토"
             ],
             "answer": 4
-        },
-        {
-            "question": "2?",
-            "choices": [
-                "2",
-                "2",
-                "2",
-                "2"
-            ],
-            "answer": 2
-        },
-        {
-            "question": "2?",
-            "choices": [
-                "2",
-                "2",
-                "2",
-                "2"
-            ],
-            "answer": 2
         }
     ],
-    "best_score": 40
+    "best_score": 0
 }
