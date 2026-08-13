@@ -2,8 +2,12 @@ def s_input(inquiry:str)->str:
     while True:
         try:
             select = input(inquiry).strip()
-        except (KeyboardInterrupt, EOFError) as e:
-            raise e
+        except KeyboardInterrupt:
+            print("\n","(Ctrl + C) 를 입력 받았습니다.","\n")
+            exit(-1)
+        except EOFError:
+            print("\n","(Ctrl + D)를 입력 받았습니다.","\n")
+            exit(-1)
         if select == "" or select == None:
             print("아무 입력도 받지 못했습니다.")
         else:
@@ -14,8 +18,14 @@ def int_input(inquiry:str,lower:int,upper:int,hint=None)->int:
     while True:
         try:
             select = input(inquiry).strip()
-        except (KeyboardInterrupt, EOFError) as e:
-            raise e
+        except KeyboardInterrupt:
+            print("\n","(Ctrl + C) 를 입력 받았습니다.","\n")
+            print()
+            exit(-1)
+        except EOFError:
+            print("\n","(Ctrl + D)를 입력 받았습니다.","\n")
+            print()
+            exit(-1)
         if select == "" or select == None:
             print("아무 입력도 받지 못했습니다.")
         else:
