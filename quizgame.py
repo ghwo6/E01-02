@@ -6,7 +6,6 @@ import data_handle
 from custom_input import s_input,int_input
 class QuizGame:
     def __init__(self):
-
         self.quiz_list:list[Quiz] = []
         self.highest_score:int = 0
 
@@ -22,6 +21,7 @@ class QuizGame:
         # 종료(메뉴5번)를 선택했을때 True를 반환함
         self.is_exit_key:bool = False
 
+    
 
         # Quiz클래스를 Json파일에 넣을때 에러가 나오므로 기본 클래스인 딕셔너리로 변환한다.
     def update_data(self):
@@ -143,10 +143,13 @@ class QuizGame:
 
         if len(self.quiz_list) == 0:
             print("아직 문제가 등록 되지 않았습니다.")
+            
+        else:
 
-        for i,li in enumerate(self.quiz_list):
-            print(f"{i+1}번 문제 > {li.question_getter()}")
-        print("\n")
+            for i,li in enumerate(self.quiz_list):
+            
+                print(f"{i+1}번 문제 > {li.question_getter()}")
+            print("\n")
 
 
     # 메뉴4 가장 높은 점수를 확인합니다.

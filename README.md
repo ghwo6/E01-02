@@ -99,6 +99,22 @@ python main.py
     * 원하는 개별 퀴즈를 가져오거나 저장할때도 필요한 데이터를 따라 빠르게 insert 하거나 update할 수 있습니다.
     * 인덱스를 추가한다면 검색하는데 시간을 줄일수 있기에 큰 도움이 될거라고 생각합니다.
 
+## 10. 데이터 읽고 쓰는과정
+
+
+*   **데이터를 읽는 방법:** 
+    *   QuizGame에서 __init__하는 과정에서 data_handle.py에 있는 read_json_data()를 실행합니다.
+    json.load()를 이용하여 state.json 파일을 읽습니다.
+    그리고 딕셔너리로 반환합니다.
+    받아온 json에서 가져온 데이터를 quizgame.data(dict 타입)으로 가져옴
+    *   parsing : quizgame.unpack_data()를 실행합니다.
+    
+*   **ㄹㄹ:** 
+    *   =
+    *   =
+
+📄 **상세 내역 확인**
+*   [터미널 실행 로그 원본 보기 (`docs/clone_pull.md`)](./docs/clone_pull.md)
 
  -- 💡 개발 과정 및 배운 점 (Troubleshooting)
 프로젝트를 진행하며 직면한 문제들과 이를 해결한 과정입니다.
